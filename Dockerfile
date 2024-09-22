@@ -33,7 +33,7 @@ RUN apt-get update && \
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ouspg/ProjectX2/main/install.sh)"
 
 #Provide your repository link below
-RUN git clone git@github.com:loppastoffa/ProjectX2.0.git
+RUN git clone https://github.com/loppastoffa/ProjectX2.0.git
 
 WORKDIR /ProjectX/ProjectX2.0
 RUN ls -a
