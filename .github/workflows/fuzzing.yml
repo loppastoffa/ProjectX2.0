@@ -1,0 +1,27 @@
+name: Fuzzing CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build-and-fuzz:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize image name
+        run: ./name.sh
+      - name: Build the Docker image
+        run: ./build.sh
+      - name: Run fuzzer
+        run:
+          docker --version
+          docker images
+          docker run --rm cifuzz-docker-image
+          docker ps -a
+          docker info
+
+
