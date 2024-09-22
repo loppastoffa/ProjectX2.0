@@ -33,9 +33,9 @@ RUN apt-get update && \
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ouspg/ProjectX2/main/install.sh)"
 
 #Provide your repository link below
-RUN git clone <your_repo_link>
+RUN git clone git@github.com:loppastoffa/ProjectX2.0.git
 
 WORKDIR /ProjectX/ProjectX2.0
 RUN ls -a
 
-CMD ["sh", "-c", "cifuzz run test1 > /ProjectX/ProjectX2.0/fuzzing.log 2>&1 && cat /ProjectX/ProjectX2.0/fuzzing.log"]
+CMD ["sh", "-c", "cifuzz run test1 --use-sandbox=false > /ProjectX/ProjectX2.0/fuzzing.log 2>&1 && cat /ProjectX/ProjectX2.0/fuzzing.log"]

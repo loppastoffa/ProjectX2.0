@@ -15,17 +15,17 @@ FUZZ_TEST(const uint8_t *data, size_t size) {
   // data into common types. Use it to generate parameters for the function you
   // want to fuzz:
   //
-  // FuzzedDataProvider fuzzed_data(data, size);
-  // int my_int = fuzzed_data.ConsumeIntegral<int8_t>();
-  // std::string my_string = fuzzed_data.ConsumeRandomLengthString();
+  FuzzedDataProvider fuzzed_data(data, size);
+  float num1 = fuzzed_data.ConsumeFloatingPoint<float>();
+  float num2 = fuzzed_data.ConsumeFloatingPoint<float>();
+  char op = fuzzed_data.PickValueInArray({'+', '-', '*', '/'});
 
-  // Call the functions you want to test with the provided data and optionally
-  // assert that the results are as expected:
-  //
-  // int res = DoSomething(my_int, my_string);
-  // assert(res != -1);
+  
+  try {
+    int result = calculator(num1, op, num2);
+    assert(result >= INT_MIN && result <= INT_MAX);
 
-  // If you want to know more about writing fuzz tests you can check out the
-  // example projects at https://github.com/CodeIntelligenceTesting/cifuzz/tree/main/examples
-  // or have a look at our docs at https://docs.code-intelligence.com/
+  } catch (const std::exception &e) {
+    // Could handle exceptions here
+  }
 }
