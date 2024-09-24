@@ -19,7 +19,7 @@ enable_fuzz_testing()
 
 ## Update this file to correctly point to your created fuzz test file. If you have multiple fuzz test files you'll have to write
 ## multiple lines. For example, for two designed test files 1 and 2, the following two lines should be added
-add_fuzz_test(test test/test.cpp)
+add_fuzz_test(test1 test/test1.cpp)
 # add_fuzz_test(<name_to_run_program> test/test2.cpp)
 
 ## Next, correctly point to the linked source files present in /src folder
